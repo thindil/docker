@@ -1,4 +1,4 @@
-FROM Debian:11
+FROM debian:11
 COPY scripts/spark.qs /tmp/
 ENV TZ=Europe/Berlin
 ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/gnat/bin
