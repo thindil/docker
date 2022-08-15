@@ -1,0 +1,40 @@
+FROM debian:11
+COPY scripts/spark.qs /tmp/
+ENV TZ=Europe/Berlin
+ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/gnat/bin:/nim-1.6.6/bin
+ENV GPR_PROJECT_PATH=/usr/share/gpr
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
+ && apt-get update && apt-get install -y \
+ gnat \
+ gprbuild \
+ tcl-dev \
+ tk-dev \
+ wget \
+ libxmlada-schema10-dev \
+ libxmlada-input10-dev \
+ asis-programs \
+ adacontrol \
+ dbus \
+ make \
+ && sed -i -e 's/dynamic/static/g' /usr/share/gpr/*.gpr \
+ && wget https://nim-lang.org/download/nim-1.6.6-linux_x64.tar.xz \
+ && tar -xf nim-1.6.6-linux_x64.tar.xz \
+ && rm nim-1.6.6-linux_x64.tar.xz \
+ && wget https://github.com/thindil/tashy/archive/refs/tags/8.6.12.tar.gz \
+ && tar -xf 8.6.12.tar.gz \
+ && cd /tashy-8.6.12 \
+ && tclsh scripts/setup.tcl --nogui \
+ && gprbuild -P tashy.gpr \
+ && gprinstall -P tashy.gpr -p -XLIBRARY_TYPE=static --build-var=LIBRARY_TYPE --build-name=static \
+ && cd .. \
+ && rm -rf /tashy-8.6.12 \
+ && rm 8.6.12.tar.gz \
+ && wget "https://community.download.adacore.com/v1/a639696a9fd3bdf0be21376cc2dc3129323cbe42?filename=gnat-2020-20200818-x86_64-linux-bin&rand=2" \
+  -O /tmp/gnat-2020-20200818-x86_64-linux-bin \
+ && chmod +x /tmp/gnat-2020-20200818-x86_64-linux-bin \
+ && /tmp/gnat-2020-20200818-x86_64-linux-bin \
+   --platform minimal --script /tmp/spark.qs \
+ && rm -rf /tmp/gnat-2020-20200818-x86_64-linux-bin \
+ && apt purge -y wget dbus \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
