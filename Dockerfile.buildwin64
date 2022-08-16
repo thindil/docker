@@ -1,4 +1,4 @@
-FROM ghcr.io/thindil/gnat-mingw64:10
+FROM debian:11
 ENV TZ=Europe/Berlin
 ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/gnat/bin:/nim-1.6.6/bin
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
@@ -10,6 +10,13 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
  gnat \
  unzip \
  binutils \
+ gnat-mingw-w64-x86-64 \
+ gprbuild \
+ && sed -i -e 's/-pc-mingw/-w64-mingw/g' /usr/share/gprconfig/* \
+ && ln -s /bin/x86_64-w64-mingw32-gcc /bin/x86_64-w64-mingw32-gnatgcc \
+ && ln -s /bin/x86_64-w64-mingw32-ar /bin/x86_64-windows-ar \
+ && mkdir -p /usr/libexec/gprbuild \
+ && ln -s /usr/lib/gprbuild/gprlib /usr/libexec/gprbuild/gprlib \
  && wget https://nim-lang.org/download/nim-1.6.6-linux_x64.tar.xz \
  && tar -xf nim-1.6.6-linux_x64.tar.xz \
  && rm nim-1.6.6-linux_x64.tar.xz \
