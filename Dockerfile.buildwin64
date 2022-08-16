@@ -12,6 +12,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
  binutils \
  gnat-mingw-w64-x86-64 \
  gprbuild \
+ xz-utils \
  && sed -i -e 's/-pc-mingw/-w64-mingw/g' /usr/share/gprconfig/* \
  && ln -s /bin/x86_64-w64-mingw32-gcc /bin/x86_64-w64-mingw32-gnatgcc \
  && ln -s /bin/x86_64-w64-mingw32-ar /bin/x86_64-windows-ar \
