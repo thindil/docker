@@ -14,7 +14,6 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
  gprbuild \
  xz-utils \
  && sed -i -e 's/-pc-mingw/-w64-mingw/g' /usr/share/gprconfig/* \
- && ln -s /bin/x86_64-w64-mingw32-gcc /bin/x86_64-w64-mingw32-gnatgcc \
  && ln -s /bin/x86_64-w64-mingw32-ar /bin/x86_64-windows-ar \
  && mkdir -p /usr/libexec/gprbuild \
  && ln -s /usr/lib/gprbuild/gprlib /usr/libexec/gprbuild/gprlib \
@@ -30,24 +29,24 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
  && cd .. \
  && rm -rf xmlada-community-2019 \
  && rm community-2019.tar.gz \
- && wget https://prdownloads.sourceforge.net/tcl/tcl8.6.10-src.tar.gz \
- && tar -xzf tcl8.6.10-src.tar.gz \
- && rm tcl8.6.10-src.tar.gz \
- && cd tcl8.6.10/win \
+ && wget https://prdownloads.sourceforge.net/tcl/tcl8.6.12-src.tar.gz \
+ && tar -xzf tcl8.6.12-src.tar.gz \
+ && rm tcl8.6.12-src.tar.gz \
+ && cd tcl8.6.12/win \
  && ./configure --prefix=/opt --host=x86_64-w64-mingw32 \
  && make -j2 \
  && make install \
  && cd / \
- && wget https://prdownloads.sourceforge.net/tcl/tk8.6.10-src.tar.gz \
- && tar -xzf tk8.6.10-src.tar.gz \
- && rm tk8.6.10-src.tar.gz \
- && cd tk8.6.10/win \
+ && wget https://prdownloads.sourceforge.net/tcl/tk8.6.12-src.tar.gz \
+ && tar -xzf tk8.6.12-src.tar.gz \
+ && rm tk8.6.12-src.tar.gz \
+ && cd tk8.6.12/win \
  && ./configure --prefix=/opt --host=x86_64-w64-mingw32 --with-tcl=/opt/lib \
  && make -j2 \
  && make install \
  && cd / \
- && rm -rf tcl8.6.10 \
- && rm -rf tk8.6.10 \
+ && rm -rf tcl8.6.12 \
+ && rm -rf tk8.6.12 \
  && wget https://github.com/thindil/tashy/archive/refs/tags/8.6.12.tar.gz \
  && tar -xf 8.6.12.tar.gz \
  && cd /tashy-8.6.12 \
