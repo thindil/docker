@@ -20,7 +20,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
  && wget https://nim-lang.org/download/nim-2.0.0-linux_x64.tar.xz \
  && tar -xf nim-2.0.0-linux_x64.tar.xz \
  && rm nim-2.0.0-linux_x64.tar.xz \
- && nimble install -y unittest2 \
+ && nimble install -y unittest2 "nimalyzer@#head" contracts \
  && wget https://github.com/thindil/tashy/archive/refs/tags/8.6.12.tar.gz \
  && tar -xf 8.6.12.tar.gz \
  && cd /tashy-8.6.12 \
