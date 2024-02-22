@@ -8,6 +8,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
  tcl \
  gcc \
  gnat \
+ git \
  unzip \
  binutils \
  gnat-mingw-w64-x86-64 \
