@@ -20,6 +20,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
  && wget https://nim-lang.org/download/nim-2.0.0-linux_x64.tar.xz \
  && tar -xf nim-2.0.0-linux_x64.tar.xz \
  && rm nim-2.0.0-linux_x64.tar.xz \
+ && nimble install -y "nimalyzer@#head" contracts \
  && wget https://github.com/AdaCore/xmlada/archive/community-2019.tar.gz \
  && tar -xf community-2019.tar.gz \
  && cd xmlada-community-2019 \
