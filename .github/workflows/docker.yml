@@ -27,7 +27,7 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: Build the Docker image
       run: docker image build -f ${{ github.event.inputs.filename }} -t ghcr.io/${{ github.event.inputs.username }}/${{ github.event.inputs.name }}:${{ github.event.inputs.version }} .
