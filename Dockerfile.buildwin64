@@ -1,6 +1,6 @@
 FROM ubuntu:jammy
 ENV TZ=Europe/Berlin
-ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/gnat/bin:/nim-2.0.6/bin
+ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/gnat/bin:/nim-2.0.8/bin
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
  && apt-get update && apt-get install -y \
  wget \
@@ -18,9 +18,9 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
  && ln -s /bin/x86_64-w64-mingw32-ar /bin/x86_64-windows-ar \
  && mkdir -p /usr/libexec/gprbuild \
  && ln -s /usr/lib/gprbuild/gprlib /usr/libexec/gprbuild/gprlib \
- && wget https://nim-lang.org/download/nim-2.0.6-linux_x64.tar.xz \
- && tar -xf nim-2.0.6-linux_x64.tar.xz \
- && rm nim-2.0.6-linux_x64.tar.xz \
+ && wget https://nim-lang.org/download/nim-2.0.8-linux_x64.tar.xz \
+ && tar -xf nim-2.0.8-linux_x64.tar.xz \
+ && rm nim-2.0.8-linux_x64.tar.xz \
  && nimble install -y "nimalyzer@#head" contracts \
  && wget https://github.com/AdaCore/xmlada/archive/community-2019.tar.gz \
  && tar -xf community-2019.tar.gz \
