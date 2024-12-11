@@ -1,6 +1,6 @@
 FROM debian:11
 ENV TZ=Europe/Berlin
-ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/gnat/bin:/nim-2.0.8/bin
+ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/gnat/bin:/nim-2.2.0/bin
 ENV GPR_PROJECT_PATH=/usr/share/gpr
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
  && apt-get update && apt-get install -y \
@@ -17,9 +17,9 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
  dbus \
  make \
  && sed -i -e 's/dynamic/static/g' /usr/share/gpr/*.gpr \
- && wget https://nim-lang.org/download/nim-2.0.8-linux_x64.tar.xz \
- && tar -xf nim-2.0.8-linux_x64.tar.xz \
- && rm nim-2.0.8-linux_x64.tar.xz \
+ && wget https://nim-lang.org/download/nim-2.2.0-linux_x64.tar.xz \
+ && tar -xf nim-2.2.0-linux_x64.tar.xz \
+ && rm nim-2.2.0-linux_x64.tar.xz \
  && nimble install -y unittest2 "nimalyzer@#head" contracts \
  && wget https://github.com/thindil/tashy/archive/refs/tags/8.6.12.tar.gz \
  && tar -xf 8.6.12.tar.gz \
