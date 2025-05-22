@@ -4,7 +4,7 @@ ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/nim-2.2.4
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
  && apt-get update && apt-get install -y \
  git \
- gcc-12 \
+ gcc-10 \
  tcl-dev \
  tk-dev \
  wget \
