@@ -5,6 +5,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
  && apt-get update && apt-get install -y \
  git \
  gcc-10 \
+ xz-utils \
  wget \
  && wget https://nim-lang.org/download/nim-2.2.4-linux_x64.tar.xz \
  && tar -xf nim-2.2.4-linux_x64.tar.xz \
