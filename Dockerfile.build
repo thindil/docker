@@ -1,6 +1,6 @@
 FROM debian:12
 ENV TZ=Europe/Berlin
-ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/nim-2.2.4/bin
+ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/nim-2.2.6/bin
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
  && apt-get update && apt-get install -y \
  git \
@@ -9,9 +9,9 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
  xz-utils \
  libpcre3 \
  wget \
- && wget https://nim-lang.org/download/nim-2.2.4-linux_x64.tar.xz \
- && tar -xf nim-2.2.4-linux_x64.tar.xz \
- && rm nim-2.2.4-linux_x64.tar.xz \
+ && wget https://nim-lang.org/download/nim-2.2.6-linux_x64.tar.xz \
+ && tar -xf nim-2.2.6-linux_x64.tar.xz \
+ && rm nim-2.2.6-linux_x64.tar.xz \
  && nimble install -y unittest2 "nimalyzer@#head" contracts \
  && apt purge -y wget \
  && apt-get clean \
