@@ -6,7 +6,7 @@ on:
          filename:
             description: Name of the Docker image configuration to build
             required: true
-            default: Dockerfile.gnat
+            default: Dockerfile.build
          username:
             description: Name of the Docker user
             required: true
@@ -14,11 +14,11 @@ on:
          name:
             description: Name of the Docker image
             required: true
-            default: gnat
+            default: build
          version:
             description: Version of the Docker image
             required: true
-            default: 9
+            default: 10
 
 jobs:
   build:
