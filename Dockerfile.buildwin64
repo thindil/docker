@@ -27,6 +27,16 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
  && make install \
  && cd .. \
  && rm SDL2-2.32.10.tar.gz \
+ && rm -rf SDL2-2.32.10 \
+ && wget https://github.com/libsdl-org/SDL_image/releases/download/release-2.8.12/SDL2_image-2.8.12.tar.gz \
+ && tar -xf SDL2_image-2.8.12.tar.gz \
+ && cd SDL2_image-2.8.12 \
+ && ./configure --prefix=/usr \
+ && make \
+ && make install \
+ && cd .. \
+ && rm SDL2_image-2.8.12.tar.gz \
+ && rm -rf SDL2_image-2.8.12 \
  && apt-get purge -y \
  wget \
  unzip \
